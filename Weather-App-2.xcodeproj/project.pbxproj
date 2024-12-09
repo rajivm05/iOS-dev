@@ -6,6 +6,14 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		B49435A62D062B0100C2326E /* Highcharts in Frameworks */ = {isa = PBXBuildFile; productRef = B49435A52D062B0100C2326E /* Highcharts */; };
+		B49435A92D062B1F00C2326E /* SwiftSpinner in Frameworks */ = {isa = PBXBuildFile; productRef = B49435A82D062B1F00C2326E /* SwiftSpinner */; };
+		B49435AC2D062B2E00C2326E /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = B49435AB2D062B2E00C2326E /* Toast */; };
+		B49435AF2D062B4600C2326E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B49435AE2D062B4600C2326E /* Alamofire */; };
+		B49435B22D062B6900C2326E /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = B49435B12D062B6900C2326E /* SwiftyJSON */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		B49435822D062A3E00C2326E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +60,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B49435AC2D062B2E00C2326E /* Toast in Frameworks */,
+				B49435AF2D062B4600C2326E /* Alamofire in Frameworks */,
+				B49435A92D062B1F00C2326E /* SwiftSpinner in Frameworks */,
+				B49435B22D062B6900C2326E /* SwiftyJSON in Frameworks */,
+				B49435A62D062B0100C2326E /* Highcharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +125,11 @@
 			);
 			name = "Weather-App-2";
 			packageProductDependencies = (
+				B49435A52D062B0100C2326E /* Highcharts */,
+				B49435A82D062B1F00C2326E /* SwiftSpinner */,
+				B49435AB2D062B2E00C2326E /* Toast */,
+				B49435AE2D062B4600C2326E /* Alamofire */,
+				B49435B12D062B6900C2326E /* SwiftyJSON */,
 			);
 			productName = "Weather-App-2";
 			productReference = B49435712D062A3C00C2326E /* Weather-App-2.app */;
@@ -195,6 +213,13 @@
 			);
 			mainGroup = B49435682D062A3C00C2326E;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B49435A42D062B0100C2326E /* XCRemoteSwiftPackageReference "highcharts-ios" */,
+				B49435A72D062B1F00C2326E /* XCRemoteSwiftPackageReference "SwiftSpinner" */,
+				B49435AA2D062B2E00C2326E /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				B49435AD2D062B4600C2326E /* XCRemoteSwiftPackageReference "Alamofire" */,
+				B49435B02D062B6900C2326E /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B49435722D062A3C00C2326E /* Products */;
 			projectDirPath = "";
@@ -399,6 +424,7 @@
 				DEVELOPMENT_TEAM = Z3M853R843;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -428,6 +454,7 @@
 				DEVELOPMENT_TEAM = Z3M853R843;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -558,6 +585,77 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B49435A42D062B0100C2326E /* XCRemoteSwiftPackageReference "highcharts-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/highcharts/highcharts-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.4.1;
+			};
+		};
+		B49435A72D062B1F00C2326E /* XCRemoteSwiftPackageReference "SwiftSpinner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/icanzilb/SwiftSpinner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.0;
+			};
+		};
+		B49435AA2D062B2E00C2326E /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
+		B49435AD2D062B4600C2326E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.2;
+			};
+		};
+		B49435B02D062B6900C2326E /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B49435A52D062B0100C2326E /* Highcharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B49435A42D062B0100C2326E /* XCRemoteSwiftPackageReference "highcharts-ios" */;
+			productName = Highcharts;
+		};
+		B49435A82D062B1F00C2326E /* SwiftSpinner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B49435A72D062B1F00C2326E /* XCRemoteSwiftPackageReference "SwiftSpinner" */;
+			productName = SwiftSpinner;
+		};
+		B49435AB2D062B2E00C2326E /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B49435AA2D062B2E00C2326E /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
+		B49435AE2D062B4600C2326E /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B49435AD2D062B4600C2326E /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		B49435B12D062B6900C2326E /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B49435B02D062B6900C2326E /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B49435692D062A3C00C2326E /* Project object */;
 }
