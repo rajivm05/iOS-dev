@@ -9,8 +9,15 @@ import SwiftUI
 
 @main
 struct Weather_App_2App: App {
-    @StateObject private var locationService = LocationService()
+    @StateObject private var locationService: LocationService
     @StateObject private var weatherViewModel = WeatherViewModel()
+    
+    init(){
+        let weatherVM = WeatherViewModel()
+        _weatherViewModel = StateObject(wrappedValue: weatherVM)
+        _locationService = StateObject(wrappedValue: LocationService(weatherViewModel: weatherVM))
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

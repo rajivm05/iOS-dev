@@ -12,10 +12,13 @@ class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
     @Published var coordinate: LocationCoordinate
     @Published var locationViewModel: LocationViewModel
+    
     private let geocodingService = GeocodingService.shared
-    override init() {
+//    private let weatherViewModel:WeatherViewModel
+    
+    init(weatherViewModel:WeatherViewModel) {
         self.coordinate = LocationCoordinate(latitude: 0.0, longitude: 0.0)
-        self.locationViewModel = LocationViewModel()
+        self.locationViewModel = LocationViewModel(weatherViewModel: weatherViewModel)
         super.init()
         setupLocationManager()
         setupLocationBinding()

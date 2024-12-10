@@ -16,6 +16,21 @@ class WeatherViewModel: ObservableObject {
     
     private let weatherService = WeatherService.shared
     
+    func loadLocalWeatherData() {
+            if let path = Bundle.main.path(forResource: "weatherResponse", ofType: "json"),
+               let data = try? Data(contentsOf: URL(fileURLWithPath: path)) {
+                do {
+                    let decoder = JSONDecoder()
+                    let weather = try decoder.decode(WeatherResponse.self, from: data)
+                    DispatchQueue.main.async {
+                        self.weatherData = weather
+                    }
+                } catch {
+                    self.errorMessage = error.localizedDescription
+                }
+            }
+        }
+    
     func fetchWeather(latitude:Double, longitude:Double){
         print("Fetching weather in weatherViewModel")
         isLoading = true

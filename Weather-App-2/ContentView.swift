@@ -50,7 +50,16 @@ struct ContentView: View {
                 }
     }
 }
-
-#Preview {
-    ContentView()
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        let weatherViewModel = WeatherViewModel()
+        ContentView()
+            .environmentObject(LocationService(weatherViewModel: weatherViewModel))
+            .environmentObject(weatherViewModel)
+            .environmentObject(LocationViewModel(weatherViewModel: weatherViewModel))
+    }
 }
+
+//#Preview {
+//    ContentView()
+//}

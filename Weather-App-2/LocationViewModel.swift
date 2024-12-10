@@ -10,16 +10,17 @@ class LocationViewModel: ObservableObject {
     @Published var formattedAddress: String
     @Published var isLoading: Bool
     @Published var errorMessage: String?
-    @Published var weatherViewModel : WeatherViewModel
+    private weak var weatherViewModel: WeatherViewModel?
+//    @Published var weatherViewModel : WeatherViewModel
     
     private let geocodingService = GeocodingService.shared
 //    private let weatherService = WeatherService.shared
     
-    init() {
+    init(weatherViewModel: WeatherViewModel) {
         self.coordinate = LocationCoordinate(latitude: 0.0, longitude: 0.0)
         self.formattedAddress = ""
         self.isLoading = false
-        self.weatherViewModel = WeatherViewModel()
+        self.weatherViewModel = weatherViewModel
     }
     
     func updateLocation(latitude: Double, longitude: Double) {
@@ -41,10 +42,13 @@ class LocationViewModel: ObservableObject {
                 switch result {
                 case .success(let address):
                     self?.formattedAddress = address
-                    self?.weatherViewModel.fetchWeather(
-                        latitude:self?.coordinate.latitude ?? 0.0,
-                        longitude: self?.coordinate.longitude ?? 0.0
-                    )
+                    
+                    if let wvm = self?.weatherViewModel{
+                        wvm.fetchWeather(
+                            latitude:self?.coordinate.latitude ?? 0.0,
+                            longitude: self?.coordinate.longitude ?? 0.0
+                        )
+                    }
                 case .failure(let error):
                     self?.errorMessage = error.localizedDescription
                 }
