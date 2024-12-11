@@ -9,9 +9,9 @@ import SwiftUI
 
 struct OverviewView: View {
     @EnvironmentObject private var weatherViewModel: WeatherViewModel
-    init(){
-        weatherViewModel.loadLocalWeatherData()
-    }
+//    init(){
+//        weatherViewModel.loadLocalWeatherData()
+//    }
     var body: some View {
         if let weatherData = weatherViewModel.weatherData{
             Text("Temperature: \(weatherData.weatherData.data.timelines[0].intervals[0].values.temperature)")

@@ -19,23 +19,8 @@ struct ContentView: View {
                     if showSplash {
                         LaunchUI()
                     } else {
-                        Group{
-                            Text("Coordinates")
-                            Text("Latitude:\(viewModel.coordinate.latitude, specifier: "%.6f")")
-                            Text("Longitude:\(viewModel.coordinate.longitude, specifier: "%.6f")")
-                        }
-                        Group {
-                            Text("Address").font(.headline)
-                            Text(viewModel.formattedAddress).multilineTextAlignment(.center)
-                        }
-                        Group{
-                            if let weatherData = weatherViewModel.weatherData{
-                                Text("Temperature: \(weatherData.weatherData.data.timelines[0].intervals[0].values.temperature)")
-                            }
-                            else{
-                                Text("Loading weather data")
-                            }
-                        }
+                        ContentView_()
+                        
                     }
                 }
                 .onAppear {
@@ -50,16 +35,30 @@ struct ContentView: View {
                 }
     }
 }
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        let weatherViewModel = WeatherViewModel()
-        ContentView()
-            .environmentObject(LocationService(weatherViewModel: weatherViewModel))
-            .environmentObject(weatherViewModel)
-            .environmentObject(LocationViewModel(weatherViewModel: weatherViewModel))
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let weatherViewModel = WeatherViewModel()
+//        ContentView()
+//            .environmentObject(LocationService(weatherViewModel: weatherViewModel))
+//            .environmentObject(weatherViewModel)
+//            .environmentObject(LocationViewModel(weatherViewModel: weatherViewModel))
+//    }
+//}
+struct ContentView_: View {
+    @EnvironmentObject var weatherViewModel: WeatherViewModel
+    var body: some View {
+        NavigationView {
+            ZStack {
+                SummaryCompile()
+            }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                .background(Image("App_background").resizable().aspectRatio(contentMode: .fill)
+                    .edgesIgnoringSafeArea(.all))
+//                .onAppear {
+//                    weatherViewModel.loadLocalWeatherData()
+//                }
+        }
     }
 }
-
-//#Preview {
-//    ContentView()
-//}
+#Preview {
+    ContentView()
+}
