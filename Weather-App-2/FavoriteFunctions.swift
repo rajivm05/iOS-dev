@@ -97,4 +97,36 @@ class FavoriteFunctions {
                         }
                 }
     }
+    func addFavoriteFromFavorite(bible:FavoriteModel) async throws{
+        let favorite = [
+            "formattedAddress": bible.formattedAddress,
+            "lat":bible.lat,
+            "lng":bible.lng,
+            "city":"",
+            "state":"",
+            "rawData":bible.rawData
+        ] as [String : String]
+        return try await withCheckedThrowingContinuation { continuation in
+                    AF.request("\(baseURL)/addData",
+                              method: .post,
+                               parameters: favorite,
+                               encoding: JSONEncoding(),
+                              headers: headers)
+                        .response { response in
+                            if let error = response.error {
+                                continuation.resume(throwing: error)
+                            } else {
+                                continuation.resume()
+                            }
+                        }
+                }
+    }
+    func toggleDataFromFavorites(bible:FavoriteModel, isFavorite:Bool) async throws{
+        if isFavorite {
+            try await deleteFavorite(lat:bible.lat, lng:bible.lng)
+        } else {
+            try await addFavoriteFromFavorite(bible:bible)
+        }
+    }
+    
 }

@@ -17,7 +17,7 @@ struct ContentView_: View {
     @EnvironmentObject private var viewModel: LocationViewModel
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack(alignment: .top) {
                 // Background
                 Image("App_background")
@@ -51,8 +51,8 @@ struct ContentView_: View {
                     .background(Color.white.opacity(0.4))
                     .cornerRadius(100)
                     .padding(.horizontal)
-                    
                     SummaryCompile()
+                    
                 }.padding()
                 
                 // Search Results Overlay
@@ -115,7 +115,6 @@ struct ContentView_: View {
 //        showSearchResults = false
         viewModel.geocodeAddress(address: result.title)
             
-            // Call weather API and update ViewModel
 //            weatherViewModel.loadLocalWeatherData()
             
 //            viewModel.weatherViewModel?.fetchWeatherData(

@@ -13,36 +13,38 @@ struct SummaryCard: View {
     @State private var navigateToDetails = false
     
     var body: some View {
-        NavigationLink(destination:WeatherDetailsView(), isActive:$navigateToDetails) {
-            ZStack{
-                RoundedRectangle(cornerRadius: 15)
-                    .fill(.thinMaterial)
-                    .shadow(radius: 5)
-                if let weatherData = weatherViewModel.weatherData,
-                   let currentWeather = weatherData.weatherData.data.timelines.first?.intervals.first?.values{
-                    VStack(alignment: .leading, spacing: 8){
-                        HStack(spacing: 20){
-                            
-                            Image("\(getWeatherStatus(code: currentWeather.weatherCode))").font(.system(size: 80, weight: .medium))
-                            VStack(alignment: .leading, spacing: 15){
-                                Text("\(Int(currentWeather.temperature))°F")
-                                    .font(.system(size: 36, weight: .medium))
+        NavigationStack {
+            NavigationLink(destination:WeatherDetailsView(), isActive:$navigateToDetails) {
+                ZStack{
+                    RoundedRectangle(cornerRadius: 15)
+                        .fill(.thinMaterial)
+                        .shadow(radius: 5)
+                    if let weatherData = weatherViewModel.weatherData,
+                       let currentWeather = weatherData.weatherData.data.timelines.first?.intervals.first?.values{
+                        VStack(alignment: .leading, spacing: 8){
+                            HStack(spacing: 20){
                                 
-                                Text("\(getWeatherStatus(code: currentWeather.weatherCode))").font(.title3)
-                                //need to add formatted Text here
-                                Text(extractCity(from: viewModel.formattedAddress)).font(.title3).bold()
+                                Image("\(getWeatherStatus(code: currentWeather.weatherCode))").font(.system(size: 80, weight: .medium))
+                                VStack(alignment: .leading, spacing: 15){
+                                    Text("\(Int(currentWeather.temperature))°F")
+                                        .font(.system(size: 36, weight: .medium))
+                                    
+                                    Text("\(getWeatherStatus(code: currentWeather.weatherCode))").font(.title3)
+                                    //need to add formatted Text here
+                                    Text(extractCity(from: viewModel.formattedAddress)).font(.title3).bold()
+                                }
+                                Spacer()
+                                
                             }
-                            Spacer()
                             
                         }
-                        
+                        .padding()
                     }
-                    .padding()
                 }
+                .frame(height: 150 )
             }
-            .frame(height: 150 )
+            .buttonStyle(PlainButtonStyle())
         }
-        .buttonStyle(PlainButtonStyle())
     }
 }
 

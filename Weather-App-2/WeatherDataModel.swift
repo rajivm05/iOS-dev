@@ -21,6 +21,16 @@ struct FavoriteModel:Codable{
 struct WeatherResponse:Codable{
     let weatherData:WeatherDataContainer
 }
+extension FavoriteModel {
+    func getWeatherData() throws -> WeatherResponse {
+        guard let jsonData = rawData.data(using: .utf8) else {
+            throw NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Failed to convert string to data"])
+        }
+        
+        let decoder = JSONDecoder()
+        return try decoder.decode(WeatherResponse.self, from: jsonData)
+    }
+}
 
 let weatherCodes: [Int: String] = [
     4201: "Heavy Rain",

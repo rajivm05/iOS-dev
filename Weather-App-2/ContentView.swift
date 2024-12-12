@@ -39,14 +39,20 @@ struct ContentView: View {
                         }
                     }
             } else {
-//                TabView{
-//                    NavigationStack {
-//                        ContentView_()
-//                    }.tag(0)
-//                    FavoriteTestView().tag(1)
-//                }
-//                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
-                ContentView_()
+                NavigationStack {
+                    TabView{
+                        ContentView_().tag(0)
+                        if let favorites = favorites {
+                            ForEach(favorites.result, id: \.formattedAddress) { favorite in
+                                FavoritePageView(bible: favorite)
+                            }
+                        }
+                    }
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
+                    
+                }
+                
+//                ContentView_()
             }
             
     }
