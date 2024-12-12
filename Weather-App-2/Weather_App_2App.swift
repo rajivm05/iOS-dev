@@ -11,7 +11,7 @@ import SwiftUI
 struct Weather_App_2App: App {
     @StateObject private var locationService: LocationService
     @StateObject private var weatherViewModel = WeatherViewModel()
-    
+    @StateObject private var favoriteFunctions = FavoriteFunctions()
     init(){
         let weatherVM = WeatherViewModel()
         _weatherViewModel = StateObject(wrappedValue: weatherVM)
@@ -24,6 +24,7 @@ struct Weather_App_2App: App {
                 .environmentObject(locationService)
                 .environmentObject(locationService.locationViewModel)
                 .environmentObject(weatherViewModel)
+                .environmentObject(favoriteFunctions)
         }
     }
 }

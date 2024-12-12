@@ -8,8 +8,10 @@
 import Foundation
 
 import Alamofire
-class FavoriteFunctions {
+class FavoriteFunctions:ObservableObject {
     // Store API endpoint
+    @Published var favorites:FavResult?
+    
     private let baseURL = Config.shared.serverURL
     private var headers: HTTPHeaders {
             return [
@@ -18,23 +20,43 @@ class FavoriteFunctions {
             ]
         }
     // Fetch all favorites
-    func fetchFavorites() async throws -> FavResult {
-        
-        return try await withCheckedThrowingContinuation { continuation in
-                    AF.request("\(baseURL)/fetchData",
-                              method: .get,
-                              headers: headers)
-                        .responseDecodable(of: FavResult.self) { response in
-                            switch response.result {
-                            case .success(let favorites):
-                                continuation.resume(returning: favorites)
-                            case .failure(let error):
-                                print("response: \(response)")
-                                continuation.resume(throwing: error)
-                            }
+//    func fetchFavorites() async throws -> FavResult {
+//        
+//        return try await withCheckedThrowingContinuation { continuation in
+//                    AF.request("\(baseURL)/fetchData",
+//                              method: .get,
+//                              headers: headers)
+//                        .responseDecodable(of: FavResult.self) { response in
+//                            switch response.result {
+//                            case .success(let favorites):
+//                                continuation.resume(returning: favorites)
+//                            case .failure(let error):
+//                                print("response: \(response)")
+//                                continuation.resume(throwing: error)
+//                            }
+//                        }
+//                }
+//    }
+    func fetchFavorites() async throws {
+            let result = try await withCheckedThrowingContinuation { continuation in
+                AF.request("\(baseURL)/fetchData",
+                          method: .get,
+                          headers: headers)
+                    .responseDecodable(of: FavResult.self) { response in
+                        switch response.result {
+                        case .success(let favorites):
+                            continuation.resume(returning: favorites)
+                        case .failure(let error):
+                            continuation.resume(throwing: error)
                         }
-                }
-    }
+                    }
+            }
+            
+            // Update the published property on the main thread
+            DispatchQueue.main.async {
+                self.favorites = result
+            }
+        }
     
     // Add favorite
     func addFavorite(formattedAddress: String, rawData: WeatherResponse, lat:String, lng:String) async throws {
@@ -130,3 +152,4 @@ class FavoriteFunctions {
     }
     
 }
+

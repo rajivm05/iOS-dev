@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B47681132D0B2D7D004999E2 /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = B47681122D0B2D7D004999E2 /* SimpleToast */; };
 		B49435A62D062B0100C2326E /* Highcharts in Frameworks */ = {isa = PBXBuildFile; productRef = B49435A52D062B0100C2326E /* Highcharts */; };
 		B49435A92D062B1F00C2326E /* SwiftSpinner in Frameworks */ = {isa = PBXBuildFile; productRef = B49435A82D062B1F00C2326E /* SwiftSpinner */; };
 		B49435AC2D062B2E00C2326E /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = B49435AB2D062B2E00C2326E /* Toast */; };
@@ -64,6 +65,7 @@
 				B49435AF2D062B4600C2326E /* Alamofire in Frameworks */,
 				B49435A92D062B1F00C2326E /* SwiftSpinner in Frameworks */,
 				B49435B22D062B6900C2326E /* SwiftyJSON in Frameworks */,
+				B47681132D0B2D7D004999E2 /* SimpleToast in Frameworks */,
 				B49435A62D062B0100C2326E /* Highcharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -130,6 +132,7 @@
 				B49435AB2D062B2E00C2326E /* Toast */,
 				B49435AE2D062B4600C2326E /* Alamofire */,
 				B49435B12D062B6900C2326E /* SwiftyJSON */,
+				B47681122D0B2D7D004999E2 /* SimpleToast */,
 			);
 			productName = "Weather-App-2";
 			productReference = B49435712D062A3C00C2326E /* Weather-App-2.app */;
@@ -219,6 +222,7 @@
 				B49435AA2D062B2E00C2326E /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				B49435AD2D062B4600C2326E /* XCRemoteSwiftPackageReference "Alamofire" */,
 				B49435B02D062B6900C2326E /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				B47681112D0B2D7D004999E2 /* XCRemoteSwiftPackageReference "SimpleToast" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B49435722D062A3C00C2326E /* Products */;
@@ -587,6 +591,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B47681112D0B2D7D004999E2 /* XCRemoteSwiftPackageReference "SimpleToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sanzaru/SimpleToast";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.10.1;
+			};
+		};
 		B49435A42D062B0100C2326E /* XCRemoteSwiftPackageReference "highcharts-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/highcharts/highcharts-ios.git";
@@ -630,6 +642,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B47681122D0B2D7D004999E2 /* SimpleToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B47681112D0B2D7D004999E2 /* XCRemoteSwiftPackageReference "SimpleToast" */;
+			productName = SimpleToast;
+		};
 		B49435A52D062B0100C2326E /* Highcharts */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B49435A42D062B0100C2326E /* XCRemoteSwiftPackageReference "highcharts-ios" */;

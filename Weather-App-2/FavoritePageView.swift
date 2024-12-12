@@ -7,11 +7,22 @@
 
 import SwiftUI
 import Alamofire
-
+import SimpleToast
 
 
 struct FavoritePageView: View {
     @State private var isFavorite: Bool = true
+    
+    @State private var showToast = false
+    private let toastOptions = SimpleToastOptions(
+           alignment: .bottom,
+           hideAfter: 2,
+           backdropColor: Color.black.opacity(0.2),
+           animation: .default,
+           modifierType: .slide
+       )
+    
+    
     private var bible: FavoriteModel
     var favoriteFunctions:FavoriteFunctions = FavoriteFunctions()
     init(bible:FavoriteModel){
@@ -26,11 +37,38 @@ struct FavoritePageView: View {
                         Spacer()
                         FavoriteToggleButton(isFavorite: isFavorite, onToggle: {
                             Task{
+                                self.showToast = true
                                try await favoriteFunctions.toggleDataFromFavorites(bible: bible, isFavorite: isFavorite)
                                 isFavorite.toggle()
                             }
                             
                         })
+                    }.simpleToast(isPresented: $showToast, options: toastOptions) {
+                        if isFavorite{
+                            HStack(spacing: 10) {
+                                            Image(systemName: "star.fill")
+                                                .foregroundColor(.yellow)
+                                            Text("Added to favorites")
+                                                .foregroundColor(.white)
+                                        }
+                                        .padding(.horizontal, 16)
+                                        .padding(.vertical, 8)
+                                        .background(Color.black.opacity(0.7))
+                                        .cornerRadius(20)
+                        }
+                        else{
+                            HStack(spacing: 10) {
+                                            Image(systemName: "star.fill")
+                                                .foregroundColor(.yellow)
+                                            Text("Removed from favorites")
+                                                .foregroundColor(.white)
+                                        }
+                                        .padding(.horizontal, 16)
+                                        .padding(.vertical, 8)
+                                        .background(Color.black.opacity(0.7))
+                                        .cornerRadius(20)
+                        }
+                        
                     }
                     
                     ZStack{

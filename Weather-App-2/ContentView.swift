@@ -11,10 +11,12 @@ import CoreLocation
 struct ContentView: View {
     @State private var showSplash = true
     @State private var favorites: FavResult?
+    
     @EnvironmentObject private var locationService:LocationService
     @EnvironmentObject private var viewModel: LocationViewModel
     @EnvironmentObject private var weatherViewModel: WeatherViewModel
-    private var favoriteFunctions = FavoriteFunctions()
+    @EnvironmentObject private var favoriteFunctions: FavoriteFunctions
+    
     
     var body: some View {
             if showSplash {
@@ -29,20 +31,19 @@ struct ContentView: View {
                             print(viewModel.coordinate)
                         }
                         Task{
-                            do{
-                                favorites = try await favoriteFunctions.fetchFavorites()
-                                print("Printing Favorites:")
-                            }
-                            catch{
-                                print("Error fetching favorites")
-                            }
+                            try await favoriteFunctions.fetchFavorites()
                         }
+                        
                     }
             } else {
                 NavigationStack {
                     TabView{
-                        ContentView_().tag(0)
-                        if let favorites = favorites {
+                        ContentView_().tag(0).onAppear(){
+                            Task{
+                                try await favoriteFunctions.fetchFavorites()
+                            }
+                        }
+                        if let favorites = favoriteFunctions.favorites {
                             ForEach(favorites.result, id: \.formattedAddress) { favorite in
                                 FavoritePageView(bible: favorite)
                             }

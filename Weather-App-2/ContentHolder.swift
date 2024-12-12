@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import SwiftSpinner
 
 struct ContentView_: View {
     @EnvironmentObject var weatherViewModel: WeatherViewModel
@@ -65,6 +65,7 @@ struct ContentView_: View {
                                 showSearchResults = true
                                 Task{
                                     await loadLocationWeather(result: result)
+                                    SwiftSpinner.show(duration: 2.0, title: "Fetching weather details for \(result.title)")
                                 }
                                 
                             }) {
