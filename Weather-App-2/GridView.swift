@@ -42,9 +42,9 @@ struct GridView: View {
                     )
                     
                     WeatherMetricBox(
-                        icon: weatherViewModel.weatherData?.getWeatherStatus(code: currentWeather.weatherCode) ?? "",
+                        icon: getWeatherStatus(code: currentWeather.weatherCode) ?? "",
                         value: "",
-                        label: weatherViewModel.weatherData?.getWeatherStatus(code: currentWeather.weatherCode) ?? ""
+                        label: getWeatherStatus(code: currentWeather.weatherCode) ?? ""
                     )
                     
                     WeatherMetricBox(

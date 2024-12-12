@@ -17,7 +17,7 @@ class WeatherViewModel: ObservableObject {
     private let weatherService = WeatherService.shared
     
     func loadLocalWeatherData() {
-            if let path = Bundle.main.path(forResource: "weatherResponse", ofType: "json"),
+            if let path = Bundle.main.path(forResource: "actualResponse", ofType: "json"),
                let data = try? Data(contentsOf: URL(fileURLWithPath: path)) {
                 do {
                     let decoder = JSONDecoder()

@@ -19,10 +19,10 @@ struct WeeklySummaryCard: View {
                 VStack(alignment: .leading, spacing: 8){
                     HStack(spacing: 20){
                         
-                        Image("\(weatherData.getWeatherStatus(code: currentWeather.weatherCode))").font(.system(size: 80, weight: .medium))
+                        Image("\(getWeatherStatus(code: currentWeather.weatherCode))").font(.system(size: 80, weight: .medium))
                         Spacer()
                         VStack(alignment: .leading, spacing: 15){
-                            Text("\(weatherData.getWeatherStatus(code: currentWeather.weatherCode))").font(.system(size: 28))
+                            Text("\(getWeatherStatus(code: currentWeather.weatherCode))").font(.system(size: 28))
                                 .padding(.bottom, 20)
                             Text("\(Int(currentWeather.temperature))°F")
                                 .font(.system(size: 36, weight: .medium))

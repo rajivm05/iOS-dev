@@ -11,6 +11,7 @@ class LocationViewModel: ObservableObject {
     @Published var isLoading: Bool
     @Published var errorMessage: String?
     private weak var weatherViewModel: WeatherViewModel?
+    
 //    @Published var weatherViewModel : WeatherViewModel
     
     private let geocodingService = GeocodingService.shared
@@ -71,6 +72,12 @@ class LocationViewModel: ObservableObject {
                         longitude: coordinates.lng
                     )
                     self?.formattedAddress = address
+                    if let wvm = self?.weatherViewModel{
+                        wvm.fetchWeather(
+                            latitude:self?.coordinate.latitude ?? 0.0,
+                            longitude: self?.coordinate.longitude ?? 0.0
+                        )
+                    }
                 case .failure(let error):
                     self?.errorMessage = error.localizedDescription
                 }

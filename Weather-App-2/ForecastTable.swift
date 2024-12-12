@@ -17,7 +17,7 @@ struct ForecastTable: View {
                     ForEach(allForecast.prefix(6), id:\.startTime){
                         interval in HStack{
                             Text(formatDateTime(interval.startTime).date).padding(.horizontal)
-                            Image(weatherData.getWeatherStatus(code: interval.values.weatherCode))
+                            Image(getWeatherStatus(code: interval.values.weatherCode))
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 30, height: 30)

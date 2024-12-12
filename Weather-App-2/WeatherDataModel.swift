@@ -6,37 +6,49 @@
 //
 
 import Foundation
+struct FavResult:Codable{
+    let result:[FavoriteModel]
+}
+struct FavoriteModel:Codable{
+    let lat: String
+    let lng: String
+    let formattedAddress: String
+    let rawData: String
+    let city: String
+    let state: String
+}
 
 struct WeatherResponse:Codable{
     let weatherData:WeatherDataContainer
-    private let weatherCodes: [Int: String] = [
-        4201: "Heavy Rain",
-        4001: "Rain",
-        4200: "Light Rain",
-        6201: "Heavy Freezing Rain",
-        6001: "Freezing Rain",
-        6000: "Light Freezing Rain",
-        4000: "Drizzle",
-        7101: "Heavy Ice Pallets",
-        7000: "Ice Pallets",
-        7102: "Light Ice Pallets",
-        5101: "Heavy Snow",
-        5000: "Snow",
-        5100: "Light Snow",
-        5001: "Flurries",
-        8000: "Thunderstorm",
-        2100: "Light Fog",
-        2000: "Fog",
-        1001: "Cloudy",
-        1102: "Mostly Cloudy",
-        1101: "Partly Cloudy",
-        1100: "Mostly Clear",
-        1000: "Clear"
-    ]
+}
 
-    func getWeatherStatus(code: Int) -> String {
-        return weatherCodes[code] ?? "Unknown"
-    }
+let weatherCodes: [Int: String] = [
+    4201: "Heavy Rain",
+    4001: "Rain",
+    4200: "Light Rain",
+    6201: "Heavy Freezing Rain",
+    6001: "Freezing Rain",
+    6000: "Light Freezing Rain",
+    4000: "Drizzle",
+    7101: "Heavy Ice Pallets",
+    7000: "Ice Pallets",
+    7102: "Light Ice Pallets",
+    5101: "Heavy Snow",
+    5000: "Snow",
+    5100: "Light Snow",
+    5001: "Flurries",
+    8000: "Thunderstorm",
+    2100: "Light Fog",
+    2000: "Fog",
+    1001: "Cloudy",
+    1102: "Mostly Cloudy",
+    1101: "Partly Cloudy",
+    1100: "Mostly Clear",
+    1000: "Clear"
+]
+
+func getWeatherStatus(code: Int) -> String {
+    return weatherCodes[code] ?? "Unknown"
 }
 
 struct WeatherDataContainer: Codable {
